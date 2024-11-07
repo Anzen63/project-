@@ -3,14 +3,14 @@
 
 <head>
     <title>Таблица</title>
-    <link rel="stylesheet" href="table.css" />
+    <link rel="stylesheet" href="D:\проект\CSS\table.css" />
 </head>
 
 <body>
     <div class="header">
-        <a href="index.html">Основная страница</a>
-        <a href="page2.html">Позиционирование элементов</a>
-        <a href="table.html">Таблица</a>
+        <a href="D:\проект\index.html">Основная страница</a>
+        <a href="D:\проект\Страницы\page2.html">Позиционирование элементов</a>
+        <a href="D:\проект\Страницы\table.html">Таблица</a>
     </div>
     <table>
         <caption>Абитуриенты</caption>
@@ -57,4 +57,52 @@
             <td>Очно</td>
         </tr>
     </table>
+
+    <form id="student">
+        <fieldset>
+            <legend>Добавить абитуриента</legend>
+            <label for="name">ФИО студента:</label>
+            <input type="text" id="name" name="name" required="required">
+            <br><br>
+            <label for="zachetbook">Номер зачётной книжки:</label>
+            <input type="number" id="zachetbook" name="zachetbook" required="required"><br><br>   
+            <label for="group">Номер группы:</label>
+            <input type="text" id="group" name="group" required="required"><br><br>
+            <label for="forma">Форма поступления:</label>
+            <select id="forma" name="forma">
+                <option value="ofline">Очно</option>
+                <option value="online">Онлайн</option>
+            </select><br><br>
+            <button type="submit">Добавить</button>
+        </fieldset>
+    </form>
+
+    <script>
+        const studentForm = document.getElementById("student");
+        const studentTable = document.querySelector("table");
+
+        let nextId = 6;
+
+        studentForm.addEventListener("submit", (event) => {
+            event.preventDefault();
+
+            const name = document.getElementById("name").value;
+            const zachetbook = document.getElementById("zachetbook").value;
+            const group = document.getElementById("group").value;
+            const forma = document.getElementById("forma").value;
+
+            const newRow = studentTable.insertRow();
+
+            newRow.insertCell().textContent = nextId;
+            newRow.insertCell().textContent = name;
+            newRow.insertCell().textContent = zachetbook;
+            newRow.insertCell().textContent = group;
+            newRow.insertCell().textContent = forma;
+
+            nextId++;
+
+            studentForm.reset();
+        });
+    </script>
+
 </body>
